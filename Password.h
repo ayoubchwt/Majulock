@@ -39,6 +39,7 @@ public:
     void setLastModified(const QString& lastModified);
     //functions:
     bool createPassword(Password p);
+    bool updatePassword(Password p);
     QList<Password> listPassword();
     bool deletePassword(QString id);
     Password searchPassword(QString id);

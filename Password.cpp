@@ -71,6 +71,23 @@ bool Password::createPassword(Password p){
         return true;
     }
 }
+bool Password::updatePassword(Password p){
+    QSqlQuery query;
+    query.prepare("UPDATE password SET label = :label, email = :email, username = :username,pass = :pass, lastModified = :lastModified WHERE id = :id");
+    query.bindValue(":label", p.getLabel());
+    query.bindValue(":email", p.getEmail());
+    query.bindValue(":username", p.getUsername());
+    query.bindValue(":pass", p.getPass());
+    query.bindValue(":lastModified", p.getLastModified());
+    query.bindValue(":id", p.getId());
+    if (!query.exec()) {
+        qDebug() << "Update failed:" << query.lastError().text();
+        return false;
+    } else {
+        qDebug() << "Password updated successfully!";
+        return true;
+    }
+}
 QList<Password> Password::listPassword() {
     QList<Password> passwordList;
     QSqlQuery query;

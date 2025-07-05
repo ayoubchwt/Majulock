@@ -3342,5 +3342,11 @@
         <file>Assets/PasswordIcons/default.svg</file>
         <file>Assets/Icons/confirm.svg</file>
         <file>Assets/Icons/trash.svg</file>
+        <file>Assets/Icons/pen.svg</file>
+        <file>Assets/Icons/zap.svg</file>
+        <file>Assets/Icons/eye.svg</file>
+        <file>Assets/Icons/eye-off.svg</file>
+        <file>Assets/Icons/search.svg</file>
+        <file>Assets/Icons/clipboard.svg</file>
     </qresource>
 </RCC>

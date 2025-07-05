@@ -43,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
     };
     ui->passwordsTop->setGraphicsEffect(createShadowEffect(this));
     ui->passwordsMain->setGraphicsEffect(createShadowEffect(this));
+    this->setActivateButton(ui->passwordsBtn);
     initLists();
 }
 MainWindow::~MainWindow()
@@ -85,6 +86,7 @@ void MainWindow::initInputs(){
     ui->showLoginEmail->clear();
     ui->showLoginUsername->clear();
     ui->showLoginPassword->clear();
+    ui->showLoginPassword->setEchoMode(QLineEdit::Password);
     ui->showLoginCreated->clear();
     ui->showLoginLastModified->clear();
 }
@@ -128,6 +130,7 @@ void MainWindow::showPasswordDetails(const Password &password) {
     ui->showLoginEmail->setText(password.getEmail());
     ui->showLoginUsername->setText(password.getUsername());
     ui->showLoginPassword->setText(password.getPass());
+    ui->showLoginPassword->setEchoMode(QLineEdit::Password);
     ui->showLoginCreated->setText(QString("Created : %1").arg(password.getCreated()));
     ui->showLoginLastModified->setText(QString("Last Modified : %1").arg(password.getLastModified()));
 }
@@ -140,6 +143,20 @@ QPixmap MainWindow::FromSvgToPixmap(const QSize &ImageSize,const QString &SvgFil
     SvgRenderer.render(&Painter);
     Painter.end();
     return Image;
+}
+QString MainWindow::generatePassword(int length){
+    const QString chars =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz"
+        "0123456789"
+        "!@#$%^&*()_+-=<>?";
+    QString password;
+    for (int i = 0; i < length; ++i)
+    {
+        int idx = QRandomGenerator::global()->bounded(chars.length());
+        password.append(chars.at(idx));
+    }
+    return password;
 }
 void MainWindow::on_passwordsAdd_clicked()
 {
@@ -157,7 +174,7 @@ void MainWindow::on_passwordsAddConfirm_clicked()
     QString username = ui->addLoginUsername->text();
     QString email = ui->addLoginEmail->text();
     QString pass = ui->addLoginPassword->text();
-    QString created = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
+    QString created = QDateTime::currentDateTime().toString("yyyy-MM-dd");
     QString lastModified = created;
     Password password("",label,email,username,pass,created,lastModified);
     if(p->createPassword(password)){
@@ -194,5 +211,108 @@ void MainWindow::on_passwordDelete_clicked()
             initLists();
         }
     }
+}
+void MainWindow::on_passwordEdit_clicked()
+{
+    QListWidgetItem *currentItem = ui->passwordsList->currentItem();
+    if (currentItem) {
+        QString passwordId = currentItem->data(Qt::UserRole).toString();
+        Password pass = p->searchPassword(passwordId);
+        ui->editLoginLabel->setText(pass.getLabel());
+        ui->editLoginEmail->setText(pass.getEmail());
+        ui->editLoginUsername->setText(pass.getUsername());
+        ui->editLoginPassword->setText(pass.getPass());
+        ui->passwordsForm->setCurrentIndex(2);
+    }
+}
+void MainWindow::on_passwordsEditDiscard_clicked()
+{
+    ui->passwordsForm->setCurrentIndex(0);
+    this->initInputs();
+    this->initLists();
+}
+void MainWindow::on_passwordsEditConfirm_clicked()
+{
+    QString label = ui->editLoginLabel->text();
+    Dialog dialog(this);
+    dialog.setTitle("Edit Login");
+    dialog.setLabel(QString("Are you sure you want to edit the login \"%1\" ?").arg(label));
+    dialog.setConfirmButtonText(" Yes, Edit");
+    dialog.setCancelButtonText(" No, Cancel");
+    dialog.setIcon(this->FromSvgToPixmap(QSize(30,30), ":/Assets/Icons/pen.svg"));
+    if (dialog.exec() == QDialog::Accepted) {
+        QListWidgetItem *currentItem = ui->passwordsList->currentItem();
+        if (currentItem) {
+            QString passwordId = currentItem->data(Qt::UserRole).toString();
+            QString username = ui->editLoginUsername->text();
+            QString email = ui->editLoginEmail->text();
+            QString pass = ui->editLoginPassword->text();
+            QString lastModified = QDateTime::currentDateTime().toString("yyyy-MM-dd");
+            Password password(passwordId, label, email, username, pass, "", lastModified);
+            if(p->updatePassword(password)){
+                initLists();
+                initInputs();
+                qDebug() << "ooooh yes Zebbi";
+            }
+            else {
+                qDebug() << "ooooh not Zebbi";
+            }
+        }
+    }
+    ui->passwordsForm->setCurrentIndex(0);
+    this->initInputs();
+    this->initLists();
+}
+void MainWindow::on_passwordsSearch_textChanged(const QString &arg1)
+{
+    for (int i = 0; i < ui->passwordsList->count(); ++i)
+    {
+        QListWidgetItem *item = ui->passwordsList->item(i);
+        QString labelText = item->text().split('\n').first().toLower();
+        QString searchLower = arg1.toLower();
+        if (labelText.contains(searchLower))
+            item->setHidden(false);
+        else
+            item->setHidden(true);
+    }
+}
+void MainWindow::on_passwordGenrate_clicked()
+{
+    ui->addLoginPassword->setText(this->generatePassword(12));
+}
+void MainWindow::on_passwordGenrate_2_clicked()
+{
+    ui->editLoginPassword->setText(this->generatePassword(12));
+}
+void MainWindow::on_showPassword_clicked()
+{
+    if (ui->showLoginPassword->echoMode() == QLineEdit::Password) {
+        ui->showLoginPassword->setEchoMode(QLineEdit::Normal);
+        ui->showPassword->setIcon(QIcon(":/Assets/Icons/eye-off.svg"));
+    } else {
+        ui->showLoginPassword->setEchoMode(QLineEdit::Password);
+        ui->showPassword->setIcon(QIcon(":/Assets/Icons/eye.svg"));
+    }
+}
+void MainWindow::on_emailCopy_clicked()
+{
+    QString password = ui->showLoginEmail->text();
+    QClipboard *clipboard = QGuiApplication::clipboard();
+    clipboard->setText(password);
+    QToolTip::showText(ui->emailCopy->mapToGlobal(QPoint()), "Copied!");
+}
+void MainWindow::on_usernameCopy_clicked()
+{
+    QString username = ui->showLoginUsername->text();
+    QClipboard *clipboard = QGuiApplication::clipboard();
+    clipboard->setText(username);
+    QToolTip::showText(ui->usernameCopy->mapToGlobal(QPoint()), "Copied!");
+}
+void MainWindow::on_passwordCopy_clicked()
+{
+    QString password = ui->showLoginPassword->text();
+    QClipboard *clipboard = QGuiApplication::clipboard();
+    clipboard->setText(password);
+    QToolTip::showText(ui->passwordCopy->mapToGlobal(QPoint()), "Copied!");
 }
 

@@ -521,7 +521,7 @@ background-color : #e1e7ed;
 border: 1px solid #0096FF;
 font-weight: bold;
 font-size: 14px;
-padding-right : 10px; 
+padding-right : 30px; 
 }
 QLineEdit:focus {
 border: 1px solid #0047AB;
@@ -536,6 +536,28 @@ border: 1px solid #0047AB;
           </property>
           <property name="placeholderText">
            <string>Search Your Vault ...</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_8">
+          <property name="geometry">
+           <rect>
+            <x>659</x>
+            <y>9</y>
+            <width>16</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : #e1e7ed;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap resource="ressources.qrc">:/Assets/Icons/search.svg</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
           </property>
          </widget>
         </widget>
@@ -964,6 +986,119 @@ padding-left : 5px;</string>
           <bool>true</bool>
          </property>
         </widget>
+        <widget class="QPushButton" name="showPassword">
+         <property name="geometry">
+          <rect>
+           <x>369</x>
+           <y>262</y>
+           <width>16</width>
+           <height>16</height>
+          </rect>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color : #e1e7ed;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="ressources.qrc">
+           <normaloff>:/Assets/Icons/eye.svg</normaloff>:/Assets/Icons/eye.svg</iconset>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="emailCopy">
+         <property name="geometry">
+          <rect>
+           <x>400</x>
+           <y>102</y>
+           <width>31</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"> QPushButton{
+background-color : #e1e7ed;
+border-radius : 10px;
+}
+QPushButton:hover {
+    background-color: #212d40;
+
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="ressources.qrc">
+           <normaloff>:/Assets/Icons/clipboard.svg</normaloff>:/Assets/Icons/clipboard.svg</iconset>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="usernameCopy">
+         <property name="geometry">
+          <rect>
+           <x>400</x>
+           <y>178</y>
+           <width>31</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"> QPushButton{
+background-color : #e1e7ed;
+border-radius : 10px;
+}
+QPushButton:hover {
+    background-color: #212d40;
+
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="ressources.qrc">
+           <normaloff>:/Assets/Icons/clipboard.svg</normaloff>:/Assets/Icons/clipboard.svg</iconset>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="passwordCopy">
+         <property name="geometry">
+          <rect>
+           <x>400</x>
+           <y>254</y>
+           <width>31</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"> QPushButton{
+background-color : #e1e7ed;
+border-radius : 10px;
+}
+QPushButton:hover {
+    background-color: #212d40;
+
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="ressources.qrc">
+           <normaloff>:/Assets/Icons/clipboard.svg</normaloff>:/Assets/Icons/clipboard.svg</iconset>
+         </property>
+        </widget>
        </widget>
        <widget class="QWidget" name="addPasswordDetails">
         <widget class="QLabel" name="label_15">
@@ -1118,11 +1253,11 @@ QPushButton:hover {
 }</string>
          </property>
          <property name="text">
-          <string> Add</string>
+          <string> Confirm</string>
          </property>
          <property name="icon">
           <iconset resource="ressources.qrc">
-           <normaloff>:/Assets/Icons/plus.svg</normaloff>:/Assets/Icons/plus.svg</iconset>
+           <normaloff>:/Assets/Icons/confirm.svg</normaloff>:/Assets/Icons/confirm.svg</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -1418,8 +1553,521 @@ font-size : 15px;</string>
           <bool>true</bool>
          </property>
         </widget>
+        <widget class="QPushButton" name="passwordGenrate">
+         <property name="geometry">
+          <rect>
+           <x>400</x>
+           <y>370</y>
+           <width>31</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"> QPushButton{
+background-color : #e1e7ed;
+border-radius : 10px;
+}
+QPushButton:hover {
+    background-color: #212d40;
+
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="ressources.qrc">
+           <normaloff>:/Assets/Icons/zap.svg</normaloff>:/Assets/Icons/zap.svg</iconset>
+         </property>
+        </widget>
        </widget>
-       <widget class="QWidget" name="editPasswordDetails"/>
+       <widget class="QWidget" name="editPasswordDetails">
+        <widget class="QLabel" name="label_26">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>121</y>
+           <width>15</width>
+           <height>15</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>15</width>
+           <height>15</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>15</width>
+           <height>15</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color : black; 
+font-size : 15px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="ressources.qrc">:/Assets/Icons/tag.svg</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_36">
+         <property name="geometry">
+          <rect>
+           <x>70</x>
+           <y>118</y>
+           <width>51</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color : black; 
+font-size : 15px;</string>
+         </property>
+         <property name="text">
+          <string>Label :</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="passwordsEditConfirm">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>443</y>
+           <width>120</width>
+           <height>33</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>120</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>120</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LayoutDirection::LeftToRight</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+background-color: #172133;
+color: #cbd5e1;
+font-weight: bold;
+font-size: 14px;
+}
+QPushButton:hover {
+    background-color: #212d40;
+}</string>
+         </property>
+         <property name="text">
+          <string> Confirm</string>
+         </property>
+         <property name="icon">
+          <iconset resource="ressources.qrc">
+           <normaloff>:/Assets/Icons/confirm.svg</normaloff>:/Assets/Icons/confirm.svg</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>18</width>
+           <height>18</height>
+          </size>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_23">
+         <property name="geometry">
+          <rect>
+           <x>70</x>
+           <y>267</y>
+           <width>81</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color : black; 
+font-size : 15px;</string>
+         </property>
+         <property name="text">
+          <string>Username : </string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="passwordsEditDiscard">
+         <property name="geometry">
+          <rect>
+           <x>190</x>
+           <y>443</y>
+           <width>120</width>
+           <height>33</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>120</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>120</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LayoutDirection::LeftToRight</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+background-color: #172133;
+color: #cbd5e1;
+font-weight: bold;
+font-size: 14px;
+}
+QPushButton:hover {
+    background-color: #212d40;
+}</string>
+         </property>
+         <property name="text">
+          <string> Discard</string>
+         </property>
+         <property name="icon">
+          <iconset resource="ressources.qrc">
+           <normaloff>:/Assets/Icons/discard.svg</normaloff>:/Assets/Icons/discard.svg</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>18</width>
+           <height>18</height>
+          </size>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_21">
+         <property name="geometry">
+          <rect>
+           <x>48</x>
+           <y>38</y>
+           <width>30</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color : black ;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="ressources.qrc">:/Assets/Icons/pen.svg</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_24">
+         <property name="geometry">
+          <rect>
+           <x>92</x>
+           <y>33</y>
+           <width>341</width>
+           <height>40</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color : black ; 
+font-size: 30px;
+font : bold ;</string>
+         </property>
+         <property name="text">
+          <string>Edit Login</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="editLoginPassword">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>368</y>
+           <width>341</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLineEdit {
+background-color : #e1e7ed;
+border: 1px solid #0096FF;
+font-weight: bold;
+font-size: 14px;
+padding-right : 5px; 
+}
+QLineEdit:focus {
+border: 1px solid #0047AB;
+}</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="editLoginEmail">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>216</y>
+           <width>341</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLineEdit {
+background-color : #e1e7ed;
+border: 1px solid #0096FF;
+font-weight: bold;
+font-size: 14px;
+padding-right : 5px; 
+}
+QLineEdit:focus {
+border: 1px solid #0047AB;
+}</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_50">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>269</y>
+           <width>15</width>
+           <height>15</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>15</width>
+           <height>15</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>15</width>
+           <height>15</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color : black; 
+font-size : 15px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="ressources.qrc">:/Assets/Icons/blackuser.svg</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_66">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>343</y>
+           <width>15</width>
+           <height>15</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>15</width>
+           <height>15</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>15</width>
+           <height>15</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color : black; 
+font-size : 15px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="ressources.qrc">:/Assets/Icons/key.svg</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_22">
+         <property name="geometry">
+          <rect>
+           <x>70</x>
+           <y>340</y>
+           <width>81</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color : black; 
+font-size : 15px;</string>
+         </property>
+         <property name="text">
+          <string>Password :</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="editLoginUsername">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>292</y>
+           <width>341</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLineEdit {
+background-color : #e1e7ed;
+border: 1px solid #0096FF;
+font-weight: bold;
+font-size: 14px;
+padding-right : 5px; 
+}
+QLineEdit:focus {
+border: 1px solid #0047AB;
+}</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="editLoginLabel">
+         <property name="geometry">
+          <rect>
+           <x>51</x>
+           <y>143</y>
+           <width>341</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLineEdit {
+background-color : #e1e7ed;
+border: 1px solid #0096FF;
+font-weight: bold;
+font-size: 14px;
+padding-right : 5px; 
+}
+QLineEdit:focus {
+border: 1px solid #0047AB;
+}</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_35">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>193</y>
+           <width>15</width>
+           <height>15</height>
+          </rect>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>15</width>
+           <height>15</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>15</width>
+           <height>15</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color : black; 
+font-size : 15px;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="ressources.qrc">:/Assets/Icons/at-sign.svg</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_25">
+         <property name="geometry">
+          <rect>
+           <x>70</x>
+           <y>190</y>
+           <width>51</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color : black; 
+font-size : 15px;</string>
+         </property>
+         <property name="text">
+          <string>Email : </string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="passwordGenrate_2">
+         <property name="geometry">
+          <rect>
+           <x>400</x>
+           <y>372</y>
+           <width>31</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"> QPushButton{
+background-color : #e1e7ed;
+border-radius : 10px;
+}
+QPushButton:hover {
+    background-color: #212d40;
+
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="ressources.qrc">
+           <normaloff>:/Assets/Icons/zap.svg</normaloff>:/Assets/Icons/zap.svg</iconset>
+         </property>
+        </widget>
+       </widget>
       </widget>
      </widget>
     </widget>
