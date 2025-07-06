@@ -3348,5 +3348,6 @@
         <file>Assets/Icons/eye-off.svg</file>
         <file>Assets/Icons/search.svg</file>
         <file>Assets/Icons/clipboard.svg</file>
+        <file>Assets/Icons/alert-circle.svg</file>
     </qresource>
 </RCC>

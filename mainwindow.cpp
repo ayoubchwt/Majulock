@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     connection::createConnection();
     ui->setupUi(this);
+    pawnedChecker = new PawnedChecker(this);
     connect(ui->passwordsBtn, &QPushButton::clicked, this,[=](){
         ui->mainwidget->setCurrentIndex(0);
         this->setActivateButton(ui->passwordsBtn);
@@ -34,6 +35,20 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->logoutBtn, &QPushButton::clicked, this,[=](){
 
     });
+    connect(pawnedChecker, &PawnedChecker::passwordPwned, this, [=](int count){
+        ui->vulnerableLabel->setText(QString("Warning: Password found %1 times in breaches!").arg(count));
+        ui->vulnerableLabel->show();
+        ui->vulnerableIcon->show();
+    });
+    connect(pawnedChecker, &PawnedChecker::passwordSafe, this, [=](){
+        ui->vulnerableLabel->hide();
+        ui->vulnerableIcon->hide();
+    });
+    connect(pawnedChecker, &PawnedChecker::checkFailed, this, [=](const QString &error){
+        qDebug() << "Pawned check failed:" << error;
+        ui->vulnerableLabel->hide();
+        ui->vulnerableIcon->hide();
+    });
     auto createShadowEffect = [](QObject* parent) -> QGraphicsDropShadowEffect* {
         auto effect = new QGraphicsDropShadowEffect(parent);
         effect->setBlurRadius(20);
@@ -44,7 +59,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->passwordsTop->setGraphicsEffect(createShadowEffect(this));
     ui->passwordsMain->setGraphicsEffect(createShadowEffect(this));
     this->setActivateButton(ui->passwordsBtn);
+    ui->mainwidget->setCurrentIndex(0);
+    initInputs();
     initLists();
+
 }
 MainWindow::~MainWindow()
 {
@@ -89,6 +107,14 @@ void MainWindow::initInputs(){
     ui->showLoginPassword->setEchoMode(QLineEdit::Password);
     ui->showLoginCreated->clear();
     ui->showLoginLastModified->clear();
+    ui->vulnerableLabel->hide();
+    ui->vulnerableIcon->hide();
+    ui->addLabelError->clear();
+    ui->addEmailError->clear();
+    ui->addPasswordError->clear();
+    ui->editLabelError->clear();
+    ui->editEmailError->clear();
+    ui->editPasswordError->clear();
 }
 void MainWindow::initLists(){
     int passwordsCount = 0 ;
@@ -131,6 +157,7 @@ void MainWindow::showPasswordDetails(const Password &password) {
     ui->showLoginUsername->setText(password.getUsername());
     ui->showLoginPassword->setText(password.getPass());
     ui->showLoginPassword->setEchoMode(QLineEdit::Password);
+    pawnedChecker->checkPassword(password.getPass());
     ui->showLoginCreated->setText(QString("Created : %1").arg(password.getCreated()));
     ui->showLoginLastModified->setText(QString("Last Modified : %1").arg(password.getLastModified()));
 }
@@ -170,18 +197,40 @@ void MainWindow::on_passwordsAddDiscard_clicked()
 }
 void MainWindow::on_passwordsAddConfirm_clicked()
 {
+    bool isValid = true;
+
+    ui->addLabelError->clear();
+    ui->addEmailError->clear();
+    ui->addPasswordError->clear();
+
     QString label = ui->addLoginLabel->text();
-    QString username = ui->addLoginUsername->text();
     QString email = ui->addLoginEmail->text();
     QString pass = ui->addLoginPassword->text();
+    QString username = ui->addLoginUsername->text();
     QString created = QDateTime::currentDateTime().toString("yyyy-MM-dd");
     QString lastModified = created;
-    Password password("",label,email,username,pass,created,lastModified);
-    if(p->createPassword(password)){
+
+    if (!Validator::validateLabel(label)) {
+        qDebug() << Validator::validateLabel(label);
+        ui->addLabelError->setText("Label should be at least 2 characters");
+        isValid = false;
+    }
+    if (!Validator::validateEmail(email)) {
+        ui->addEmailError->setText("Invalid email format");
+        isValid = false;
+    }
+    if (!Validator::validatePassword(pass)) {
+        ui->addPasswordError->setText("Password should be at least 8 characters");
+        isValid = false;
+    }
+    if (!isValid) {
+        return;
+    }
+    Password password("", label, email, username, pass, created, lastModified);
+    if (p->createPassword(password)) {
         initLists();
         initInputs();
-    }
-    else {
+    } else {
         qDebug() << "ooooh not Zebbi";
     }
 }
@@ -233,7 +282,32 @@ void MainWindow::on_passwordsEditDiscard_clicked()
 }
 void MainWindow::on_passwordsEditConfirm_clicked()
 {
+    bool isValid = true;
+
+    ui->editLabelError->clear();
+    ui->editEmailError->clear();
+    ui->editPasswordError->clear();
+
     QString label = ui->editLoginLabel->text();
+    QString email = ui->editLoginEmail->text();
+    QString pass = ui->editLoginPassword->text();
+
+    if (!Validator::validateLabel(label)) {
+        qDebug() << Validator::validateLabel(label);
+        ui->editLabelError->setText("Label should be at least 2 characters");
+        isValid = false;
+    }
+    if (!Validator::validateEmail(email)) {
+        ui->editEmailError->setText("Invalid email format");
+        isValid = false;
+    }
+    if (!Validator::validatePassword(pass)) {
+        ui->editPasswordError->setText("Password should be at least 8 characters");
+        isValid = false;
+    }
+    if (!isValid) {
+        return;
+    }
     Dialog dialog(this);
     dialog.setTitle("Edit Login");
     dialog.setLabel(QString("Are you sure you want to edit the login \"%1\" ?").arg(label));
@@ -245,8 +319,6 @@ void MainWindow::on_passwordsEditConfirm_clicked()
         if (currentItem) {
             QString passwordId = currentItem->data(Qt::UserRole).toString();
             QString username = ui->editLoginUsername->text();
-            QString email = ui->editLoginEmail->text();
-            QString pass = ui->editLoginPassword->text();
             QString lastModified = QDateTime::currentDateTime().toString("yyyy-MM-dd");
             Password password(passwordId, label, email, username, pass, "", lastModified);
             if(p->updatePassword(password)){

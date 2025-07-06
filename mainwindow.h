@@ -13,6 +13,7 @@
 #include <QToolTip>
 #include "connection.h"
 #include "Password.h"
+#include "validator.h"
 #include "dialog.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -55,5 +56,6 @@ private:
     Ui::MainWindow *ui;
     QGraphicsDropShadowEffect *effect;
     Password *p;
+    PawnedChecker *pawnedChecker;
 };
 #endif // MAINWINDOW_H
