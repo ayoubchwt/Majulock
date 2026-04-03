@@ -6,7 +6,6 @@
 #include <QList>
 #include <QSqlError>
 #include <QDebug>
-#include "connection.h"
 using namespace std ;
 class Password
 {

@@ -347,7 +347,7 @@ border-bottom: 1px solid #334155;</string>
      <string notr="true">background-color : #e1e7ed;</string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="passwords">
      <widget class="QWidget" name="passwordsTop" native="true">
@@ -516,6 +516,9 @@ border-radius : 15px;</string>
           </property>
          </widget>
          <widget class="QLineEdit" name="passwordsSearch">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
           <property name="geometry">
            <rect>
             <x>650</x>
@@ -537,7 +540,7 @@ border-radius : 15px;</string>
            </size>
           </property>
           <property name="focusPolicy">
-           <enum>Qt::FocusPolicy::NoFocus</enum>
+           <enum>Qt::FocusPolicy::ClickFocus</enum>
           </property>
           <property name="layoutDirection">
            <enum>Qt::LayoutDirection::RightToLeft</enum>
@@ -733,6 +736,7 @@ border: 1px solid #0096FF;
 font-weight: bold;
 font-size: 14px;
 padding-right : 5px; 
+color : black;
 }
 QLineEdit:focus {
 border: 1px solid #0047AB;
@@ -778,6 +782,7 @@ border: 1px solid #0096FF;
 font-weight: bold;
 font-size: 14px;
 padding-right : 5px; 
+color : black;
 }
 QLineEdit:focus {
 border: 1px solid #0047AB;
@@ -823,6 +828,7 @@ border: 1px solid #0096FF;
 font-weight: bold;
 font-size: 14px;
 padding-right : 5px; 
+color : black;
 }
 QLineEdit:focus {
 border: 1px solid #0047AB;
@@ -1339,6 +1345,7 @@ border: 1px solid #0096FF;
 font-weight: bold;
 font-size: 14px;
 padding-right : 5px; 
+color : black;
 }
 QLineEdit:focus {
 border: 1px solid #0047AB;
@@ -1364,6 +1371,7 @@ border: 1px solid #0096FF;
 font-weight: bold;
 font-size: 14px;
 padding-right : 5px; 
+color : black;
 }
 QLineEdit:focus {
 border: 1px solid #0047AB;
@@ -1551,6 +1559,7 @@ border: 1px solid #0096FF;
 font-weight: bold;
 font-size: 14px;
 padding-right : 5px; 
+color : black;
 }
 QLineEdit:focus {
 border: 1px solid #0047AB;
@@ -1576,6 +1585,7 @@ border: 1px solid #0096FF;
 font-weight: bold;
 font-size: 14px;
 padding-right : 5px; 
+color : black;
 }
 QLineEdit:focus {
 border: 1px solid #0047AB;
@@ -2122,6 +2132,7 @@ border: 1px solid #0096FF;
 font-weight: bold;
 font-size: 14px;
 padding-right : 5px; 
+color : black;
 }
 QLineEdit:focus {
 border: 1px solid #0047AB;
@@ -2147,6 +2158,7 @@ border: 1px solid #0096FF;
 font-weight: bold;
 font-size: 14px;
 padding-right : 5px; 
+color : black;
 }
 QLineEdit:focus {
 border: 1px solid #0047AB;
@@ -2259,6 +2271,7 @@ border: 1px solid #0096FF;
 font-weight: bold;
 font-size: 14px;
 padding-right : 5px; 
+color : black;
 }
 QLineEdit:focus {
 border: 1px solid #0047AB;
@@ -2284,6 +2297,7 @@ border: 1px solid #0096FF;
 font-weight: bold;
 font-size: 14px;
 padding-right : 5px; 
+color : black;
 }
 QLineEdit:focus {
 border: 1px solid #0047AB;
@@ -2453,39 +2467,11 @@ QPushButton:hover {
      </widget>
     </widget>
     <widget class="QWidget" name="personalInfos">
-     <widget class="QLabel" name="label_14">
-      <property name="geometry">
-       <rect>
-        <x>230</x>
-        <y>270</y>
-        <width>241</width>
-        <height>231</height>
-       </rect>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::FocusPolicy::NoFocus</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: black;
-font-size: 50px;
-font-weight: 600;
-</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap resource="ressources.qrc">:/Assets/Pictures/MajulockMini.png</pixmap>
-      </property>
-      <property name="scaledContents">
-       <bool>true</bool>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_4">
       <property name="geometry">
        <rect>
-        <x>590</x>
-        <y>350</y>
+        <x>460</x>
+        <y>240</y>
         <width>261</width>
         <height>111</height>
        </rect>
@@ -2505,8 +2491,8 @@ font-weight: 600;
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>580</x>
-        <y>330</y>
+        <x>500</x>
+        <y>230</y>
         <width>261</width>
         <height>111</height>
        </rect>
@@ -2519,34 +2505,6 @@ font-weight: 600;
       </property>
       <property name="text">
        <string>Soon ! </string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_9">
-      <property name="geometry">
-       <rect>
-        <x>220</x>
-        <y>250</y>
-        <width>241</width>
-        <height>231</height>
-       </rect>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::FocusPolicy::NoFocus</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: black;
-font-size: 50px;
-font-weight: 600;
-</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap resource="ressources.qrc">:/Assets/Pictures/MajulockMini.png</pixmap>
-      </property>
-      <property name="scaledContents">
-       <bool>true</bool>
       </property>
      </widget>
     </widget>
@@ -2554,8 +2512,8 @@ font-weight: 600;
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
-        <x>590</x>
-        <y>360</y>
+        <x>490</x>
+        <y>280</y>
         <width>261</width>
         <height>111</height>
        </rect>
@@ -2568,34 +2526,6 @@ font-weight: 600;
       </property>
       <property name="text">
        <string>Soon ! </string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_13">
-      <property name="geometry">
-       <rect>
-        <x>230</x>
-        <y>280</y>
-        <width>241</width>
-        <height>231</height>
-       </rect>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::FocusPolicy::NoFocus</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: black;
-font-size: 50px;
-font-weight: 600;
-</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap resource="ressources.qrc">:/Assets/Pictures/MajulockMini.png</pixmap>
-      </property>
-      <property name="scaledContents">
-       <bool>true</bool>
       </property>
      </widget>
     </widget>
@@ -2603,8 +2533,8 @@ font-weight: 600;
      <widget class="QLabel" name="label_5">
       <property name="geometry">
        <rect>
-        <x>620</x>
-        <y>370</y>
+        <x>450</x>
+        <y>240</y>
         <width>261</width>
         <height>111</height>
        </rect>
@@ -2617,34 +2547,6 @@ font-weight: 600;
       </property>
       <property name="text">
        <string>Soon ! </string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_27">
-      <property name="geometry">
-       <rect>
-        <x>260</x>
-        <y>290</y>
-        <width>241</width>
-        <height>231</height>
-       </rect>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::FocusPolicy::NoFocus</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: black;
-font-size: 50px;
-font-weight: 600;
-</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap resource="ressources.qrc">:/Assets/Pictures/MajulockMini.png</pixmap>
-      </property>
-      <property name="scaledContents">
-       <bool>true</bool>
       </property>
      </widget>
     </widget>
@@ -2652,8 +2554,8 @@ font-weight: 600;
      <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
-        <x>590</x>
-        <y>360</y>
+        <x>410</x>
+        <y>250</y>
         <width>261</width>
         <height>111</height>
        </rect>
@@ -2666,34 +2568,6 @@ font-weight: 600;
       </property>
       <property name="text">
        <string>Soon ! </string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_28">
-      <property name="geometry">
-       <rect>
-        <x>230</x>
-        <y>280</y>
-        <width>241</width>
-        <height>231</height>
-       </rect>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::FocusPolicy::NoFocus</enum>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: black;
-font-size: 50px;
-font-weight: 600;
-</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap resource="ressources.qrc">:/Assets/Pictures/MajulockMini.png</pixmap>
-      </property>
-      <property name="scaledContents">
-       <bool>true</bool>
       </property>
      </widget>
     </widget>
