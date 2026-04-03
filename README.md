@@ -2,6 +2,11 @@
 
 Majulock is a secure, local desktop password manager built with C++ and the Qt framework. It allows users to safely store and manage their digital identities, including passwords, credit cards, and personal information, directly on their machine using an SQLite database. 
 
+<p align="center">
+  <img src="Assets/demos/1.png" width="49%" />
+  <img src="Assets/demos/2.png" width="49%" />
+</p>
+
 ## Features
 
 - Local Data Storage: All passwords and secrets are stored locally in an SQLite database (Majulock.db).
